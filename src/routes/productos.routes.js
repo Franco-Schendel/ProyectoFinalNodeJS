@@ -1,4 +1,5 @@
 import express from 'express';
+import { authentication } from '../middlewares/authentication.js';
 
 import * as productsController from '../controllers/productos.controller.js';
 
@@ -8,10 +9,10 @@ router.get('/products', productsController.getAllProducts);
 
 router.get('/products/:id', productsController.getProductById);
 
-router.post('/products/create', productsController.createProduct);
+router.post('/products/create', authentication, productsController.createProduct);
 
-router.put('/products/:id', productsController.editProduct);
+router.put('/products/:id', authentication, productsController.editProduct);
 
-router.delete('/products/:id', productsController.deleteProduct);
+router.delete('/products/:id', authentication, productsController.deleteProduct);
 
 export default router;

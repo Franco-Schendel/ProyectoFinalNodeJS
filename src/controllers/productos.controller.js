@@ -27,19 +27,17 @@ export const getProductById = async (req, res) => {
 
 export const createProduct = async (req, res) => {
     const {nombre, precio} = req.body;
-    console.log(`Nombre: ${nombre}, Precio ${precio}`)
-
     const newProduct = await productsService.createProduct(nombre, precio);
-    console.log(`Producto ${newProduct}`);
+
     res.status(201).json(newProduct);
 }
 
 export const editProduct = async (req, res) => {
     const id = req.params.id;
-    const {name, price} = req.body;
+    const {nombre, precio} = req.body;
 
-    const editedProduct = await productsService.editProduct(id, name, price);
-    console.log(`Producto ${editedProduct}`);
+    const editedProduct = await productsService.editProduct(id, nombre, precio);
+
     if(editedProduct){
         res.status(200).json(editedProduct);
     }

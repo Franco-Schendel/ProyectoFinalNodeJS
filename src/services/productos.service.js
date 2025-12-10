@@ -15,7 +15,7 @@ export const createProduct = async (aName, aPrice) => {
 export const editProduct = async (id, nombre, precio) => {
     return await Product.findOneAndUpdate(
         { id },
-        { nombre: nombre, precio: precio },
+        { nombre, precio },
         { new: true, runValidators: true }
     );
 };

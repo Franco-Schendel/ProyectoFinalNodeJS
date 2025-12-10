@@ -1,61 +1,25 @@
-let products = [
-    {
-        id: 1,
-        name: "Guitarra",
-        pr: 800
-    },
-    {
-        id: 2,
-        name: "Flauta",
-        price: 100
-    },
-    {
-        id: 3,
-        name: "Bajo electrico",
-        price: 1500
-    }
-]
+import Product from '../models/productos.model.js';
 
-const getAllProducts = () => {
-    return products;
+export const getAllProducts = async () => {
+    return await Product.find();
 }
 
-const getProductById = (id) => {
-    return products.find(aProduct => aProduct.id == id);
+export const getProductById = async (id) => {
+    return await Product.findOne({id});
 }
 
-const createProduct = (aName, aPrice) => {
-    const newProduct = {
-        id : products.length + 1,
-        name : aName,
-        price : aPrice
-    }
-
-    products.push(newProduct);
-    return newProduct;
+export const createProduct = async (aName, aPrice) => {
+    return await Product.create({ nombre: aName, precio: aPrice });
 }
 
-export const editProduct = async (id, name, price) => {
-    const product = products.find(aProduct => aProduct.id == id);
-
-    product.name = name;
-    product.price = price;
-
-    return product
-}
+export const editProduct = async (id, nombre, precio) => {
+    return await Product.findOneAndUpdate(
+        { id },
+        { nombre: nombre, precio: precio },
+        { new: true, runValidators: true }
+    );
+};
 
 export const deleteProduct = async id => {
-    const product = products.find(product => product.id == id);
-    products = products.filter(product => product.id != id);
-    return product;
+    return await Product.findOneAndDelete({id});
 }
-
-const productsService = {
-    getAllProducts,
-    getProductById,
-    createProduct,
-    editProduct,
-    deleteProduct
-}
-
-export default productsService;

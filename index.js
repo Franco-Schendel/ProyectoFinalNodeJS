@@ -1,14 +1,18 @@
 import express from 'express';
 import cors from 'cors';
 import productsRouter from './src/routes/productos.routes.js';
+import bodyParser from 'body-parser';
+import { connectDB } from './src/config/db.js';
 
 const app = express();
 const PORT = 3000;
 
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
 
-app.use('', productsRouter);
+await connectDB();
+
+app.use('/api', productsRouter);
 
 /* 
 app.get('/ping', (req, res) => {

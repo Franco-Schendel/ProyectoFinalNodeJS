@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "name": "Guitarra",
+        "pr": 800
+    },
+    {
+        "id": 2,
+        "name": "Flauta",
+        "price": 100
+    },
+    {
+        "id": 3,
+        "name": "Bajo electrico",
+        "price": 1500
+    }
+]

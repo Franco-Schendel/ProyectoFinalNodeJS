@@ -9,8 +9,11 @@ import { authentication } from './src/middlewares/authentication.js';
 const app = express();
 const PORT = 3000;
 
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:5173",
+}));
 app.use(bodyParser.json());
+app.use('/uploads', express.static("uploads"));
 
 await connectDB();
 
